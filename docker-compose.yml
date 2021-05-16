@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+  backup:
+    #restart: unless-stopped
+    build:
+      context: .
+    #user: "1000"
+    volumes:
+      - /tmp/backup_sqlite_test:/backup
+    # env_file:
+    #  - .env
+    ports:
+      - 8080:8080
+    environment:
+      - SCHEDULE=6h
+      - TRIGGER_PORT=8080
+      - SOURCE_PATH=/backup/chinook.db
+      - TARGET_PATH=/backup/export.db

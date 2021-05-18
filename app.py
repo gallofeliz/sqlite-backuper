@@ -17,7 +17,7 @@ def backup(raise_on_error=False):
     destination = config.get('target', {}).get('path', '/backup/target.db')
 
     try:
-        source_con = sqlite3.connect('file:' + pathname2url(source) + '?mode=rw')
+        source_con = sqlite3.connect('file:' + pathname2url(source) + '?mode=ro')
         target_con = sqlite3.connect(destination)
         source_con.backup(target_con)
         logger.info('Backup succeeded', extra={'action': 'backup', 'status': 'success'})

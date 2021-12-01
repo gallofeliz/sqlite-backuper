@@ -36,7 +36,7 @@ def backup(raise_on_error=False):
             raise e
 
 def listen_trigger(port):
-    class Handler(http.server.SimpleHTTPRequestHandler):
+    class Handler(http.server.BaseHTTPRequestHandler):
         def trigger(self):
             try:
                 backup(raise_on_error=True)
